@@ -4,8 +4,11 @@ const ciudadCtrl = {};
 
 // Función que devuelve todas las ciudades
 ciudadCtrl.getCiudades = async (req, res) => {
-    const ciudades = await Ciudad.find()
-        .then((data) => res.json(data))
+    const ciudades = await Ciudad.find().sort({_id:-1}).limit(10)
+        .then((data) => {
+            const objectWithArray = { data: data };
+            res.json(objectWithArray);
+        })
         .catch((err) => console.error(err));
 };
 

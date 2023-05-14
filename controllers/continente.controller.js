@@ -4,25 +4,13 @@ const continenteCtrl = {};
 // Función que devuelve todas las ciudades
 continenteCtrl.getContinentes = async (req, res) => {
     const continentes = await Continente.find()
-        .then((data) => {
+        .then((data
+        ) => {
             const objectWithArray = { data: data };
             res.json(objectWithArray);
         })
         .catch((err) => console.error(err));
 };
-
-/*exports.getContinentes = async (req, res) => {
-  try {
-    const continentes = await Continente.find().populate({
-      path: 'paises',
-      populate: { path: 'ciudades' },
-    });
-    res.status(200).json({ data: continentes });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};*/
 
 // Función que devuelve una ciudad dada un id
 continenteCtrl.getContiente = async (req, res) => {
@@ -37,7 +25,6 @@ continenteCtrl.getContiente = async (req, res) => {
 
 // Función para actualizar una ciudad con el id y la ciudad con los nuevos datos
 continenteCtrl.updateContinente = async (req, res) => {
-
     const continente = req.body;
     await Continente.findByIdAndUpdate(
         req.params.id,
